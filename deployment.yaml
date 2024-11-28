@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ccbd-app-deployment
+  labels:
+    app: ccbd-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ccbd-app
+  template:
+    metadata:
+      labels:
+        app: ccbd-app
+    spec:
+      containers:
+      - name: ccbd-app
+        image: veera491/ccbd-app:latest
+        ports:
+        - containerPort: 5000
