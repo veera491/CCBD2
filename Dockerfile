@@ -8,14 +8,13 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir flask
+RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
 # Expose port 5000 for the Flask app
 EXPOSE 5000
 
 # Define environment variable for Flask
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
+ENV DATABASE_URL="postgresql://postgres:veera491@postgres-service:5432/ccbd_db"
 
-# Run the command to start Flask
-CMD ["flask", "run"]
+# Run the command to start the application with Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]

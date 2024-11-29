@@ -19,3 +19,18 @@ spec:
         image: veera491/ccbd-app:latest
         ports:
         - containerPort: 5000
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://postgres:veera491@postgres-service:5432/ccbd_db"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 15
+          periodSeconds: 20
