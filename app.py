@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = "your_secret_key"  # Required for flashing messages
 
 # Database Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Veera@491@localhost:5432/ccbd_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:veera491@localhost:5432/ccbd_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database
@@ -38,15 +38,21 @@ def register():
         email = request.form['email']
         password = request.form['password']
 
-        # Add user to the database
+        # Check if the email already exists in the database
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash("Email already exists. Please use a different email.")
+            return redirect(url_for('register'))
+
+        # Add new user to the database
         new_user = User(name=name, dob=dob, gender=gender, address=address, email=email, password=password)
         try:
             db.session.add(new_user)
             db.session.commit()
             return render_template('success.html')
-        except:
+        except Exception as e:
             db.session.rollback()
-            flash("Email already exists. Please use a different email.")
+            flash(f"An error occurred: {str(e)}")
             return redirect(url_for('register'))
 
     return render_template('register.html')
@@ -74,9 +80,8 @@ def show_data():
     users = User.query.all()
     return render_template('show_data.html', users=users)
 
-# Initialize database tables
-@app.before_first_request
-def create_tables():
+# Initialize database tables (using app context)
+with app.app_context():
     db.create_all()
 
 if __name__ == '__main__':
