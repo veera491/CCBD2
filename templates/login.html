@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<br><br><br><br><br><br><br><br><br>
-<div class="card mx-auto" style="max-width: 400px;">
+<br><br><br><br><br><br>
+<div class="card mx-auto" style="max-width: 500px;">
     <div class="card-header bg-success text-white text-center">
-        <h3>Log In</h3>
+        <h3>Login</h3>
     </div>
     <div class="card-body">
         <form method="post">
@@ -15,8 +15,15 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-success w-100">Log In</button>
+            <button type="submit" class="btn btn-success w-100">Login</button>
         </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-danger mt-3">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
     </div>
 </div>
 {% endblock %}
