@@ -1,31 +1,49 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<br><br><br><br><br><br>
-<div class="text-center">
-    <h2>All Users Data</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>DOB</th>
-                <th>Gender</th>
-                <th>Address</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.dob }}</td>
-                <td>{{ user.gender }}</td>
-                <td>{{ user.address }}</td>
-                <td>{{ user.email }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="mb-4 text-primary">All Users Data</h2>
+        <p class="lead text-secondary">Here is a list of all registered users. Each user's details are listed below.</p>
+    </div>
+
+    <!-- Card to enclose the table with colors -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Registered Users</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="thead-dark bg-dark text-white">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr class="bg-light">
+                            <td >{{ user.id }}</td>
+                            <td >{{ user.name }}</td>
+                            <td >{{ user.dob }}</td>
+                            <td >{{ user.gender }}</td>
+                            <td >{{ user.address }}</td>
+                            <td >{{ user.email }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+        <a href="/" class="btn btn-primary btn-lg">Back to Home</a>
+    </div>
 </div>
 {% endblock %}
