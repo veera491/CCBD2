@@ -9,7 +9,7 @@ COPY . /app
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
-
+docker images
 # Expose port 5000 for the Flask app
 EXPOSE 5000
 
