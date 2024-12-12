@@ -1,3 +1,5 @@
-Flask
+Flask~=3.1.0
 Flask-SQLAlchemy
 psycopg2-binary
+
+requests~=2.32.3
