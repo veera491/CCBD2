@@ -9,12 +9,11 @@ COPY . /app
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
-docker images
+#docker images
 # Expose port 5000 for the Flask app
 EXPOSE 5000
-
 # Define environment variable for Flask
 ENV DATABASE_URL="postgresql://postgres:veera491@postgres-service:5432/ccbd_db"
 
 # Run the command to start the application with Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "micro_service_1_app:app"]

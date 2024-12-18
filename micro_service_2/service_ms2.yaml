@@ -7,7 +7,7 @@ spec:
     app: ccbd-micro-service-2
   ports:
   - protocol: TCP
-    port: 5000
-    targetPort: 5000
+    port: 8000
+    targetPort: 8000
     nodePort: 30007
   type: LoadBalancer

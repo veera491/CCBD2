@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: ccbd-micro-service-1
-        image: veera491/ccbd-micro-service-1:latest
+        image: veera491/ccbd-micro-services:latest
         ports:
         - containerPort: 5000
         env:
