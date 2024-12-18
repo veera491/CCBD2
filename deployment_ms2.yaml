@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ccbd-app2-deployment
+  name: ccbd-app2-deployment-micro-service-2
   labels:
-    app: ccbd-app2
+    app: ccbd-micro-service-2
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: ccbd-app2
+      app: ccbd-micro-service-2
   template:
     metadata:
       labels:
-        app: ccbd-app2
+        app: ccbd-micro-service-2
     spec:
       containers:
-      - name: ccbd-app2
-        image: veera491/ccbd-app2:latest
+      - name: ccbd-micro-service-2
+        image: veera491/ccbd-micro-service-2:latest
         ports:
         - containerPort: 5000
         env:

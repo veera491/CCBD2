@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ccbd-micro-service-1
+spec:
+  selector:
+    app: ccbd-micro-service-1
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+    nodePort: 30001
+  type: LoadBalancer

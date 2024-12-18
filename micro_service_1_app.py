@@ -74,11 +74,11 @@ def login():
 
     return render_template('login.html')
 
-# Route: Show All Data
+"""# Route: Show All Data
 @app.route('/show_data')
 def show_data():
     users = User.query.all()
-    return render_template('show_data.html', users=users)
+    return render_template('show_data.html', users=users)"""
 
 # Initialize database tables (using app context)
 with app.app_context():
