@@ -16,4 +16,5 @@ EXPOSE 5000
 ENV DATABASE_URL="postgresql://postgres:veera491@postgres-service:5432/ccbd_db"
 
 # Run the command to start the application with Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "micro_service_1_app:app"]
+#CMD ["gunicorn", "--bind", "0.0.0.0:5000", "micro_service_1_app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--threads", "4", "micro_service_1_app:app"]

@@ -24,13 +24,13 @@ spec:
           value: "postgresql://postgres:veera491@postgres-service:5432/ccbd_db"
         readinessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 5000
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 5000
           initialDelaySeconds: 15
           periodSeconds: 20

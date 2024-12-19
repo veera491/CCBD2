@@ -6,11 +6,13 @@ app = Flask(__name__)
 app.secret_key = "your_secret_key"  # Required for flashing messages
 
 # Database Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:veera491@localhost:5432/ccbd_db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:veera491@localhost:5432/ccbd_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:veera491@postgres-service:5432/ccbd_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database
 db = SQLAlchemy(app)
+
 
 # Database Model
 class User(db.Model):
@@ -22,10 +24,12 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
 
+
 # Route: Home
 @app.route('/')
 def home():
     return render_template('home.html')
+
 
 # Route: Registration
 @app.route('/register', methods=['GET', 'POST'])
@@ -57,6 +61,7 @@ def register():
 
     return render_template('register.html')
 
+
 # Route: Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -74,11 +79,18 @@ def login():
 
     return render_template('login.html')
 
+
 """# Route: Show All Data
 @app.route('/show_data')
 def show_data():
     users = User.query.all()
     return render_template('show_data.html', users=users)"""
+
+
+@app.route('/health')
+def health():
+    return "OK", 200
+
 
 # Initialize database tables (using app context)
 with app.app_context():
